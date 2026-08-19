@@ -23,12 +23,12 @@ Every developer needs container orchestrator — but existing tools are either t
 
 ## Features
 
-- **Container lifecycle management** — Container lifecycle management
-- **Service discovery** — Service discovery
-- **Load balancing** — Load balancing
-- **Health monitoring** — Health monitoring
-- **Rolling updates** — Rolling updates
-- **CLI-based management** — CLI-based management
+- Container lifecycle management
+- Service discovery
+- Load balancing
+- Health monitoring
+- Rolling updates
+- CLI-based management
 
 ## Quick Start
 
