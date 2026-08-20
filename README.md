@@ -1,153 +1,89 @@
 # Container Orchestrator
 
-Simplified container orchestration tool - manage Docker containers with ease.
+![CI](https://github.com/Qyroxen/Container-Orchestrator/actions/workflows/ci.yml/badge.svg) ![Go](https://img.shields.io/badge/Go-1.23+-00ADD8?style=flat&logo=go) ![License](https://img.shields.io/badge/License-MIT-yellow.svg) ![Stars](https://img.shields.io/github/stars/Qyroxen/Container-Orchestrator?style=social)
 
-[![Go Version](https://img.shields.io/badge/Go-1.23%2B-00ADD8?style=flat&logo=go)](https://go.dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![CI](https://github.com/Qyroxen/container-orchestrator/actions/workflows/ci.yml/badge.svg)](https://github.com/Qyroxen/container-orchestrator/actions/workflows/ci.yml)
+> Simplified container orchestration - manage Docker like a pro
 
-> Simplified container orchestration tool - manage Docker containers with ease.
+[![Star Badge](https://img.shields.io/github/stars/Qyroxen/Container-Orchestrator?style=social)](https://github.com/Qyroxen/Container-Orchestrator/stargazers)
 
 ## What is it?
 
-Container Orchestrator is a command-line tool built with Go that helps developers simplified container orchestration tool - manage docker containers with ease. It's designed to be fast, reliable, and easy to use.
+Container Orchestrator provides a simple CLI for managing Docker containers, networks, and volumes with powerful features.
 
-## Why?
+## Why should you care?
 
-Every developer needs container orchestrator — but existing tools are either too complex, too slow, or require cloud dependencies. We built Container Orchestrator to be:
-- **Fast** — Written in Go for maximum performance
-- **Offline** — No cloud dependencies, your data stays on your machine
-- **Simple** — Clean CLI interface with sensible defaults
-- **Extensible** — Easy to customize and integrate into your workflow
+Docker commands are verbose. This tool simplifies container management.
+
+## Demo
+
+```bash
+./container-orch ps
+```
+
+**Output:**
+```
+CONTAINER ID   IMAGE          STATUS      PORTS
+a1b2c3d4e5f6   nginx:latest   running     0.0.0.0:80->80/tcp
+b2c3d4e5f6g7   postgres:13    running     0.0.0.0:5432->5432/tcp
+```
 
 ## Features
 
-- Container lifecycle management
-- Service discovery
-- Load balancing
+- Container management
+- Network management
+- Volume management
+- Docker Compose support
 - Health monitoring
-- Rolling updates
-- CLI-based management
 
 ## Quick Start
 
-### Prerequisites
-
-- Go 1.23 or later
-
-### Install
-
 ```bash
-# Install with go install
-go install github.com/Qyroxen/container-orchestrator@latest
+# Install
+git clone https://github.com/Qyroxen/Container-Orchestrator.git
+cd Container-Orchestrator
+go build -o container-orch .
 
-# Or build from source
-git clone https://github.com/Qyroxen/container-orchestrator.git
-cd container-orchestrator
-go build -o container-orchestrator .
-```
-
-### Usage
-
-```bash
-# Basic usage
-.container-orchestrator --help
-
-# Example
-./container-orchestrator deploy --service web --replicas 3
-```
-
-## Output
-
-```
-Container Orchestrator v1.0.0
-
-Scanning...
-
-✓ Analysis complete
-✓ Results ready
-
-{
-  "status": "success",
-  "results": [...]
-}
-```
-
-## Configuration
-
-Create a `.config.yaml` file in your project root:
-
-```yaml
-# Configuration options
-verbose: true
-output: json
-timeout: 30s
+# Run
+./container-orch ps
 ```
 
 ## CLI Flags
 
-```
-container orchestrator [command]
-
-Flags:
-  --path string      Target path (default ".")
-  --format string    Output format: json, text (default "text")
-  --verbose          Enable verbose output
-  --config string    Config file path
-  --output string    Output file path
-```
+| Flag | Description | Default |
+|------|-------------|---------|
+| `--format` | Output format (table, json) | `table` |
+| `--filter` | Filter containers | `none` |
+| `--watch` | Real-time monitoring | `false` |
 
 ## Examples
 
-### Basic Example
+# List containers
+./container-orch ps
 
-```bash
-.container-orchestrator --path ./src
-```
+# Start containers
+./container-orch up --detach
 
-### Advanced Example
-
-```bash
-.container-orchestrator --path ./src --format json --output report.json --verbose
-```
-
-### CI/CD Integration
-
-```yaml
-# .github/workflows/ci.yml
-- name: Run Container Orchestrator
-  run: |
-    go install github.com/Qyroxen/container-orchestrator@latest
-    container-orchestrator --path . --format json --output report.json
-```
-
-## Documentation
-
-- [Getting Started](docs/getting-started.md)
-- [Configuration](docs/configuration.md)
-- [API Reference](docs/api-reference.md)
-- [Examples](examples/)
-- [Contributing](CONTRIBUTING.md)
+# View logs
+./container-orch logs --follow
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Author
-
-**Qyroxen** - [GitHub](https://github.com/Qyroxen)
-
 ---
 
-**Found this useful?** Give it a ⭐ on GitHub!
+<p align="center">
+  <a href="https://github.com/Qyroxen/Container-Orchestrator/stargazers">
+    <img src="https://img.shields.io/github/stars/Qyroxen/Container-Orchestrator?style=social" alt="Star this repo">
+  </a>
+  <a href="https://github.com/Qyroxen/Container-Orchestrator/network/members">
+    <img src="https://img.shields.io/github/forks/Qyroxen/Container-Orchestrator?style=social" alt="Fork this repo">
+  </a>
+  <a href="https://github.com/Qyroxen/Container-Orchestrator/issues">
+    <img src="https://img.shields.io/github/issues/Qyroxen/Container-Orchestrator" alt="Issues">
+  </a>
+</p>
