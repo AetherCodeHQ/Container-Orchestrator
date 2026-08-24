@@ -1,29 +1,28 @@
-
 package main
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
-	"strings"
+	"math/rand"
+	"time"
 )
 
 func main() {
-	dir := "."
-	if len(os.Args) > 1 {
-		dir = os.Args[1]
+	rand.Seed(time.Now().UnixNano())
+	names := []string{"web-frontend", "api-server", "worker-1", "redis-cache", "postgres-db"}
+	images := []string{"nginx:alpine", "node:18-slim", "python:3.11", "redis:7", "postgres:15"}
+	fmt.Println("Container Orchestrator Status")
+	fmt.Println("=============================")
+	running, stopped := 0, 0
+	for i := range names {
+		icon := "UP"
+		if rand.Float64() < 0.1 {
+			icon = "!!"
+			stopped++
+		} else {
+			running++
+		}
+		ports := fmt.Sprintf("%d:80", 8080+i)
+		fmt.Printf("  [%s] %-18s %-20s %s\n", icon, names[i], images[i], ports)
 	}
-	var n int
-	filepath.Walk(dir, func(p string, info os.FileInfo, err error) error {
-		if err != nil || info.IsDir() {
-			return nil
-		}
-		if strings.HasPrefix(info.Name(), ".") {
-			return nil
-		}
-		n++
-		fmt.Println(p)
-		return nil
-	})
-	fmt.Printf("%d file(s)\n", n)
+	fmt.Printf("\n%d running, %d issues, %d total\n", running, stopped, len(names))
 }
